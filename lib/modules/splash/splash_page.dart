@@ -1,7 +1,9 @@
+import 'package:dart_week/modules/splash/splash_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashPage extends StatelessWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  SplashPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,19 @@ class SplashPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(''),
       ),
-      body: Container(),
+      body: Center(
+        child: Container(
+          width: Get.width,
+          height: Get.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(''),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Image.asset(''),
+        ),
+      ),
     );
   }
 }

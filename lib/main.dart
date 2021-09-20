@@ -1,3 +1,4 @@
+import 'package:dart_week/modules/login/login_module.dart';
 import 'package:dart_week/modules/splash/splash_module.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       getPages: [
         ...SplashModule().routers,
+        ...LoginModule().routers,
       ],
     );
   }
