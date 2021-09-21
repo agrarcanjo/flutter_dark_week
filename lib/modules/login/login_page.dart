@@ -1,9 +1,10 @@
+import 'package:dart_week/modules/login/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends GetView<StatelessWidget> {
+class LoginPage extends GetView<LoginController> {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -40,7 +41,7 @@ class LoginPage extends GetView<StatelessWidget> {
                     onPressed: () => controller.login(),
                     text: 'Entrar com o Google',
                   ),
-                )
+                ),
               ],
             ),
           )
