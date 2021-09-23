@@ -1,9 +1,4 @@
 import 'package:get/get.dart';
 
-class SplashController extends GetxController {
-  @override
-  void onReady() {
-    super.onReady();
-    Get.offAllNamed('/login');
-  }
-}
+// cria uma classe controller e fornece funções de onInit, onReady,
+class SplashController extends GetxController {}
