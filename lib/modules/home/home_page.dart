@@ -3,6 +3,7 @@
 import 'package:dart_week/application/ui/filmes_app_icons.dart';
 import 'package:dart_week/modules/favorites/favorites_page.dart';
 import 'package:dart_week/modules/home/home_controller.dart';
+import 'package:dart_week/modules/movies/movies_bindings.dart';
 import 'package:dart_week/modules/movies/movies_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_week/application/ui/theme_extensions.dart';
@@ -37,6 +38,7 @@ class HomePage extends GetView<HomeController> {
             if (settings.name == '/movies') {
               return GetPageRoute(
                 settings: settings,
+                binding: MoviesBindings(),
                 page: () => MoviesPage(),
               );
             }
