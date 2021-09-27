@@ -7,9 +7,14 @@ class MovieModel {
   final String posterPath;
   final List<int> genres;
   final bool favorite;
-
-  MovieModel(this.id, this.title, this.releaseDate, this.posterPath,
-      this.genres, this.favorite);
+  MovieModel({
+    required this.id,
+    required this.title,
+    required this.releaseDate,
+    required this.posterPath,
+    required this.genres,
+    required this.favorite,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -23,13 +28,14 @@ class MovieModel {
   }
 
   factory MovieModel.fromMap(Map<String, dynamic> map) {
+    //caso venha vazio, adicionar validadores null safe
     return MovieModel(
-      map['id'],
-      map['title'],
-      map['release_date'],
-      map['http://image.tmdb.org/t/p/w200/${map['poster_path']}'],
-      List<int>.from(map['genre_id']),
-      map['favorite'] ?? false,
+      id: map['id'] ?? 0,
+      title: map['title'] ?? '',
+      releaseDate: map['release_date'] ?? '',
+      posterPath: 'http://image.tmdb.org/t/p/w200/${map['poster_path']}',
+      genres: List<int>.from(map['genre_id'] ?? const []),
+      favorite: map['favorite'] ?? false,
     );
   }
 
