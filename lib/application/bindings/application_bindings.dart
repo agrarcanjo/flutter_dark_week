@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 class ApplicationBindings implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => RestClient());
+    Get.lazyPut(() => RestClient(), fenix: true);
 
     //fenix permite que o objeto não seja destruído ao sair da tela
     Get.lazyPut<LoginRepository>(() => LoginRepositoryImpl(), fenix: true);
@@ -23,8 +23,10 @@ class ApplicationBindings implements Bindings {
     Get.put(AuthService()).init();
 
     Get.lazyPut<MoviesRepository>(
-        () => MoviesRepositoryImpl(restClient: Get.find()));
+        () => MoviesRepositoryImpl(restClient: Get.find()),
+        fenix: true);
     Get.lazyPut<MoviesService>(
-        () => MoviesServiceImpl(moviesRepository: Get.find()));
+        () => MoviesServiceImpl(moviesRepository: Get.find()),
+        fenix: true);
   }
 }

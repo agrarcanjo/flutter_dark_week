@@ -1,4 +1,5 @@
 import 'package:dart_week/application/ui/filmes_app_icons.dart';
+import 'package:dart_week/application/ui/theme_extensions.dart';
 import 'package:dart_week/models/movie_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,10 @@ import 'package:intl/intl.dart';
 class MovieCard extends StatelessWidget {
   final dateFormat = DateFormat('dd/MM/y');
   final MovieModel movie;
-  MovieCard({Key? key, required this.movie}) : super(key: key);
+  final VoidCallback favoriteCallBack;
+
+  MovieCard({Key? key, required this.movie, required this.favoriteCallBack})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +37,11 @@ class MovieCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       //utilizado para retirar cerilhado do border
                       clipBehavior: Clip.antiAlias,
-                      child: Image.network(movie.posterPath,
-                          width: 148, height: 184, fit: BoxFit.cover),
+                      child: Image.network(
+                          'http://image.tmdb.org/t/p/w200/${movie.posterPath}',
+                          width: 148,
+                          height: 184,
+                          fit: BoxFit.cover),
                     ),
                   ),
                   SizedBox(
@@ -62,8 +69,8 @@ class MovieCard extends StatelessWidget {
             ),
             //consegue posicionar esse componente em qualquer lugar
             Positioned(
-              bottom: 70,
-              right: -3,
+              bottom: 90,
+              right: -5,
               child: Material(
                 elevation: 5,
                 shape: const CircleBorder(),
@@ -71,10 +78,16 @@ class MovieCard extends StatelessWidget {
                 child: SizedBox(
                   height: 30,
                   child: IconButton(
-                    iconSize: 13,
-                    onPressed: () {},
-                    icon: const Icon(FilmesAppIcons.heart),
-                  ),
+                      iconSize: 13,
+                      onPressed: favoriteCallBack,
+                      icon: Icon(
+                        movie.favorite
+                            ? FilmesAppIcons.heart
+                            : FilmesAppIcons.heart_empty,
+                        color: movie.favorite
+                            ? context.themeRed
+                            : context.themeGrey,
+                      )),
                 ),
               ),
             )

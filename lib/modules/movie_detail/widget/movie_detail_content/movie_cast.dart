@@ -1,11 +1,38 @@
+import 'package:dart_week/application/ui/theme_extensions.dart';
+import 'package:dart_week/models/cast_model.dart';
 import 'package:flutter/material.dart';
 
 class MovieCast extends StatelessWidget {
+  final CastModel? cast;
+  const MovieCast({Key? key, this.cast}) : super(key: key);
 
-  const MovieCast({ Key? key }) : super(key: key);
-
-   @override
-   Widget build(BuildContext context) {
-       return Container(width: 95,padding: EdgeInsets.all(10),child: ,),
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 95,
+      padding: EdgeInsets.all(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              cast?.image ?? '',
+              width: 85,
+              height: 85,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Text(
+            cast?.name ?? '',
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          ),
+          Text(
+            cast?.name ?? '',
+            style: TextStyle(fontSize: 12, color: context.themeGrey),
+          ),
+        ],
+      ),
+    );
   }
 }

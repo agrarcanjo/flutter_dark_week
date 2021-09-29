@@ -1,6 +1,9 @@
+import 'package:dart_week/application/ui/widget/movie_card.dart';
+import 'package:dart_week/modules/favorites/favorites_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class FavoritesPage extends StatelessWidget {
+class FavoritesPage extends GetView<FavoritesController> {
   const FavoritesPage({Key? key}) : super(key: key);
 
   @override
@@ -10,7 +13,24 @@ class FavoritesPage extends StatelessWidget {
         title: const Text('Favoritos'),
         automaticallyImplyLeading: false,
       ),
-      body: Container(),
+      body: Obx(() {
+        return SingleChildScrollView(
+          child: SizedBox(
+            width: Get.width,
+            //coluna que quebra a linha
+            child: Wrap(
+              alignment: WrapAlignment.spaceAround,
+              children: controller.movies
+                  .map((element) => MovieCard(
+                        movie: element,
+                        favoriteCallBack: () =>
+                            controller.removeFavorite(element),
+                      ))
+                  .toList(),
+            ),
+          ),
+        );
+      }),
     );
   }
 }
